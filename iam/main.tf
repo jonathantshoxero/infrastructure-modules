@@ -52,8 +52,8 @@ module "iam-policy-selfservice-MFA" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "AllowUserAccessToCreateDeleteTheirOwnVirtualMFADevices",
-        Effect = "Allow",
+        Sid = "AllowUserAccessToCreateDeleteTheirOwnVirtualMFADevices"
+        Effect = "Allow"
         Action = [
           "iam:*VirtualMFADevice"
         ]
@@ -65,8 +65,8 @@ module "iam-policy-selfservice-MFA" {
         }
       },
       {
-        Sid = "AllowUsersToEnableSyncDisableTheirOwnMFADevices",
-        Effect = "Allow",
+        Sid = "AllowUsersToEnableSyncDisableTheirOwnMFADevices"
+        Effect = "Allow"
         Action = [
           "iam:EnableMFADevice",
           "iam:DeactivateMFADevice",
@@ -81,12 +81,12 @@ module "iam-policy-selfservice-MFA" {
         }
       },
       {
-        Sid = "AllowUsersToListVirtualMFADevices",
-        Effect = "Allow",
+        Sid = "AllowUsersToListVirtualMFADevices"
+        Effect = "Allow"
         Action = [
           "iam:ListVirtualMFADevices"
         ]
-        Resource = "arn:aws:iam::710004563535:mfa/*",
+        Resource = "arn:aws:iam::710004563535:mfa/*"
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
@@ -94,45 +94,45 @@ module "iam-policy-selfservice-MFA" {
         }
       },
       {
-        Sid = "AllowUsersToListUsersInConsole",
-        Effect = "Allow",
+        Sid = "AllowUsersToListUsersInConsole"
+        Effect = "Allow"
         Action = [
           "iam:ListUsers"
         ]
-        Resource = "arn:aws:iam::710004563535:user/*",
+        Resource = "arn:aws:iam::710004563535:user/*"
       },
       {
-        Sid = "AllowUsersAllActionsForCredentials",
-        Effect = "Allow",
+        Sid = "AllowUsersAllActionsForCredentials"
+        Effect = "Allow"
         Action = [
           "iam:*LoginProfile",
           "iam:*AccessKey*",
           "iam:*SigningCertificate*"
         ]
-        Resource = "arn:aws:iam::710004563535:user/*",
+        Resource = "arn:aws:iam::710004563535:user/*"
       },
       {
-        Effect = "Allow",
+        Effect = "Allow"
         Action = [
-          "iam:*ChangePassword",
+          "iam:*ChangePassword"
         ]
         Resource = "arn:aws:iam::477275408388:user/*"
       },
       {
-        Effect = "Allow",
+        Effect = "Allow"
         Action = [
-          "iam:GetAccountPasswordPolicy",
+          "iam:GetAccountPasswordPolicy"
         ]
         Resource = "arn:aws:iam::477275408388:*"
       },
       {
-        Sid = "AllowUsersToSeeStatsOnIAMConsoleDashboard",
-        Effect = "Allow",
+        Sid = "AllowUsersToSeeStatsOnIAMConsoleDashboard"
+        Effect = "Allow"
         Action = [
           "iam:GetAccount*",
           "iam:ListAccount*"
         ]
-        Resource = "arn:aws:iam::477275408388:*",
+        Resource = "arn:aws:iam::477275408388:*"
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
@@ -140,8 +140,8 @@ module "iam-policy-selfservice-MFA" {
         }
       },
       {
-        Sid = "GetCurrentUserGroups",
-        Effect = "Allow",
+        Sid = "GetCurrentUserGroups"
+        Effect = "Allow"
         Action = [
           "iam:ListGroupsForUser"
         ]
@@ -153,8 +153,8 @@ module "iam-policy-selfservice-MFA" {
         }
       },
       {
-        Sid = "GetAccountAlias",
-        Effect = "Allow",
+        Sid = "GetAccountAlias"
+        Effect = "Allow"
         Action = [
           "iam:ListAccountAliases"
         ]
@@ -178,16 +178,16 @@ module "iam-policy-selfservice-NoMFA" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "AllowUsersToCreateDeleteTheirOwnVirtualMFADevices",
-        Effect = "Allow",
+        Sid = "AllowUsersToCreateDeleteTheirOwnVirtualMFADevices"
+        Effect = "Allow"
         Action = [
-          "iam:*VirtualMFADevice",
+          "iam:*VirtualMFADevice"
         ]
         Resource = "arn:aws:iam::477275408388:mfa/*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
       },
       {
-        Sid = "AllowUsersToEnableSyncDisableTheirOwnMFADevices",
-        Effect = "Allow",
+        Sid = "AllowUsersToEnableSyncDisableTheirOwnMFADevices"
+        Effect = "Allow"
         Action = [
           "iam:EnableMFADevice",
           "iam:ListMFADevices",
@@ -196,24 +196,24 @@ module "iam-policy-selfservice-NoMFA" {
         Resource = "arn:aws:iam::477275408388:user/*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
       },
       {
-        Sid = "AllowUsersToListVirtualMFADevices",
-        Effect = "Allow",
+        Sid = "AllowUsersToListVirtualMFADevices"
+        Effect = "Allow"
         Action = [
           "iam:ListVirtualMFADevices"
         ]
         Resource = "arn:aws:iam::477275408388:mfa/*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
       },
       {
-        Sid = "AllowUsersToListUsersInConsole",
-        Effect = "Allow",
+        Sid = "AllowUsersToListUsersInConsole"
+        Effect = "Allow"
         Action = [
           "iam:ListUsers"
         ]
         Resource = "arn:aws:iam::477275408388:user/*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
       },
       {
-        Sid = "AllowUsersAllActionsForCredentials",
-        Effect = "Allow",
+        Sid = "AllowUsersAllActionsForCredentials"
+        Effect = "Allow"
         Action = [
           "iam:*LoginProfile",
           "iam:*AccessKey*",
@@ -225,15 +225,14 @@ module "iam-policy-selfservice-NoMFA" {
         Action = [
           "iam:ChangePassword"
         ]
-        Effect = "Allow",
+        Effect = "Allow"
         Resource = "arn:aws:iam::477275408388:user/*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
       },
       {
         Action = [
-          "iam:GetAccountPasswordPolicy",
-
+          "iam:GetAccountPasswordPolicy"
         ]
-        Effect = "Allow",
+        Effect = "Allow"
         Resource = "arn:aws:iam::477275408388:*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
       },
       {
@@ -242,7 +241,7 @@ module "iam-policy-selfservice-NoMFA" {
           "iam:GetAccount*",
           "iam:ListAccount*"
         ]
-        Effect = "Allow",
+        Effect = "Allow"
         Resource = "arn:aws:iam::477275408388:*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
       }
     ]
@@ -260,7 +259,7 @@ module "iam-policy-access-readonly" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "ReadOnly",
+        Sid = "ReadOnly"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
@@ -287,7 +286,7 @@ module "iam-policy-access-maintainer" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "ReadOnly",
+        Sid = "ReadOnly"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
@@ -314,7 +313,7 @@ module "iam-policy-access-fulladmin" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "FullAdmin",
+        Sid = "FullAdmin"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
@@ -334,12 +333,11 @@ module "iam-policy-access-fulladmin" {
 module "iam-role-readonly" {
   source = "./iam-roles"
   iam_role_name = "iam-role-read-only"
-  iam_role_description = "This role has the AWS Managed Policy ReadOnlyAccess attached."
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "FullAdmin",
+        Sid = "FullAdmin"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
@@ -363,7 +361,7 @@ module "iam-role-maintainer" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "FullAdmin",
+        Sid = "FullAdmin"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
@@ -387,7 +385,7 @@ module "iam-role-fulladmin" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "FullAdmin",
+        Sid = "FullAdmin"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
