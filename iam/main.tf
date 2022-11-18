@@ -426,17 +426,17 @@ module "iam-group-selfservice" {
 
 module "iam-group-readonly" {
   source = "./iam-groups"
-  iam_group_name = "SelfService-${var.env}"
+  iam_group_name = "readonly-${var.env}"
 }
 
 module "iam-group-maintainer" {
   source = "./iam-groups"
-  iam_group_name = "SelfService-${var.env}"
+  iam_group_name = "maintainer-${var.env}"
 }
 
 module "iam-group-fulladmin" {
   source = "./iam-groups"
-  iam_group_name = "SelfService-${var.env}"
+  iam_group_name = "fulladmin-${var.env}"
 }
 
 ################## IAM Groups Attachments
