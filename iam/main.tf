@@ -356,7 +356,6 @@ module "iam-role-readonly" {
 module "iam-role-maintainer" {
   source = "./iam-roles"
   iam_role_name = "iam-role-read-only"
-  iam_role_description = "This role has the AWS Managed Policy ReadOnlyAccess attached."
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -380,7 +379,6 @@ module "iam-role-maintainer" {
 module "iam-role-fulladmin" {
   source = "./iam-roles"
   iam_role_name = "iam-role-read-only"
-  iam_role_description = "This role has the AWS Managed Policy AdministratorAccess attached."
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
