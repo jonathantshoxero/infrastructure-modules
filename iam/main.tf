@@ -352,19 +352,19 @@ module "iam-role-fulladmin" {
 ################## IAM Roles to Policies attachment
 module "iam-policies-roles-readonly" {
   source = "./iam-policies-roles-attachment"
-  iam_group_name = module.iam-group-selfservice.iam_group_name
+  iam_role_name = module.iam-role-readonly.iam_role_name
   iam_policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
 }
 
 module "iam-policies-roles-maintainer" {
   source = "./iam-policies-roles-attachment"
-  iam_group_name = module.iam-group-selfservice.iam_group_name
+  iam_role_name = module.iam-role-maintainer.iam_role_name
   iam_policy_arn = "arn:aws:iam::aws:policy/PowerUserAccess"
 }
 
 module "iam-policies-roles-fulladmin" {
   source = "./iam-policies-roles-attachment"
-  iam_group_name = module.iam-group-selfservice.iam_group_name
+  iam_role_name = module.iam-role-fulladmin.iam_role_name
   iam_policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 } 
 
