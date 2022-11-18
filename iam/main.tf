@@ -1,7 +1,7 @@
 
 module "iam-policy-view-own-access" {
   source = "./iam-policies"
-  iam_policy_name        = "test_policy"
+  iam_policy_name        = "view-own-access-dev"
   iam_policy_description = "My test policy"
 
   # Terraform's "jsonencode" function converts a
@@ -10,12 +10,12 @@ module "iam-policy-view-own-access" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "AllowUserAccessToPolicy",
+        Sid = "AllowUserAccessToPolicy"
         Action = [
           "iam:GetPolicy",
           "iam:GetPolicyVersion"
         ]
-        Resource = "arn:aws:iam::710004563535:policy/*",
+        Resource = "arn:aws:iam::710004563535:policy/*"
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
@@ -23,27 +23,27 @@ module "iam-policy-view-own-access" {
         }
       },
       {
-        Sid = "AllowUserListOwnAccess",
+        Sid = "AllowUserListOwnAccess"
         Effect = "",
         Action = [
           "iam:ListAttachedUserPolicies",
           "iam:ListUserPolicies",
           "iam:ListGroupsForUser"
         ]
-        Resource = "arn:aws:iam::710004563535:policy/*",
+        Resource = "arn:aws:iam::710004563535:policy/*"
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
             }
         }
-      },
+      }
     ]
   })
 }
 
 module "iam-policy-selfservice-MFA" {
   source = "./iam-policies"
-  iam_policy_name        = "test_policy"
+  iam_policy_name        = "selfservice-MFA-dev"
   iam_policy_description = "My test policy"
 
   # Terraform's "jsonencode" function converts a
@@ -145,7 +145,7 @@ module "iam-policy-selfservice-MFA" {
         Action = [
           "iam:ListGroupsForUser"
         ]
-        Resource = "arn:aws:iam::477275408388:*",
+        Resource = "arn:aws:iam::477275408388:*"
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
@@ -158,7 +158,7 @@ module "iam-policy-selfservice-MFA" {
         Action = [
           "iam:ListAccountAliases"
         ]
-        Resource = "*",
+        Resource = "*"
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
