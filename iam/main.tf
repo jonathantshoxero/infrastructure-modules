@@ -338,11 +338,14 @@ module "iam-role-readonly" {
     Statement = [
       {
         Sid = "FullAdmin"
+        Effect = "Allow"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
         ]
-        Resource = ["arn:aws:iam::710004563535:role/iam-role-read-only"] #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Principal = {
+				  AWS = "arn:aws:iam::710004563535:role/iam-role-read-only"
+        }
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
@@ -355,17 +358,20 @@ module "iam-role-readonly" {
 
 module "iam-role-maintainer" {
   source = "./iam-roles"
-  iam_role_name = "iam-role-read-only"
+  iam_role_name = "iam-role-maintainer"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
         Sid = "FullAdmin"
+        Effect = "Allow"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
         ]
-        Resource = ["arn:aws:iam::710004563535:role/iam-role-maintainer"] #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Principal = {
+				  AWS = "arn:aws:iam::710004563535:role/iam-role-maintainer"
+        }
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
@@ -378,17 +384,20 @@ module "iam-role-maintainer" {
 
 module "iam-role-fulladmin" {
   source = "./iam-roles"
-  iam_role_name = "iam-role-read-only"
+  iam_role_name = "iam-role-fulladmin"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
         Sid = "FullAdmin"
+        Effect = "Allow"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
         ]
-        Resource = ["arn:aws:iam::710004563535:role/iam-role-fulladmin"] #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Principal = {
+				  AWS = "arn:aws:iam::710004563535:role/iam-role-fulladmin"
+        }
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
