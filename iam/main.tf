@@ -344,7 +344,7 @@ module "iam-role-readonly" {
           "sts:TagSession"
         ]
         Principal = {
-				  AWS = "arn:aws:iam::710004563535:role/iam-role-read-only"
+				  AWS = "arn:aws:iam::710004563535:user/jonathan.ho@xero.com"
         }
         Condition = {
             Bool = {
@@ -370,7 +370,7 @@ module "iam-role-maintainer" {
           "sts:TagSession"
         ]
         Principal = {
-				  AWS = "arn:aws:iam::710004563535:role/iam-role-maintainer"
+				  AWS = "arn:aws:iam::710004563535:user/jonathan.ho@xero.com"
         }
         Condition = {
             Bool = {
@@ -396,7 +396,7 @@ module "iam-role-fulladmin" {
           "sts:TagSession"
         ]
         Principal = {
-				  AWS = "arn:aws:iam::710004563535:role/iam-role-fulladmin"
+				  AWS = "arn:aws:iam::710004563535:user/jonathan.ho@xero.com"
         }
         Condition = {
             Bool = {
