@@ -318,7 +318,7 @@ module "iam-policy-access-fulladmin" {
   #   ]
   # })
 
-  policy = policy = jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
