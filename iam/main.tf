@@ -4,8 +4,6 @@ module "iam-policy-view-own-access" {
   iam_policy_name        = "view-own-access-dev"
   iam_policy_description = "My test policy"
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -46,8 +44,6 @@ module "iam-policy-selfservice-MFA" {
   iam_policy_name        = "selfservice-MFA-dev"
   iam_policy_description = "My test policy"
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -183,7 +179,7 @@ module "iam-policy-selfservice-NoMFA" {
         Action = [
           "iam:*VirtualMFADevice"
         ]
-        Resource = "arn:aws:iam::477275408388:mfa/*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Resource = "arn:aws:iam::477275408388:mfa/*"
       },
       {
         Sid = "AllowUsersToEnableSyncDisableTheirOwnMFADevices"
@@ -193,7 +189,7 @@ module "iam-policy-selfservice-NoMFA" {
           "iam:ListMFADevices",
           "iam:ResyncMFADevice"
         ]
-        Resource = "arn:aws:iam::477275408388:user/*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Resource = "arn:aws:iam::477275408388:user/*"
       },
       {
         Sid = "AllowUsersToListVirtualMFADevices"
@@ -201,7 +197,7 @@ module "iam-policy-selfservice-NoMFA" {
         Action = [
           "iam:ListVirtualMFADevices"
         ]
-        Resource = "arn:aws:iam::477275408388:mfa/*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Resource = "arn:aws:iam::477275408388:mfa/*"
       },
       {
         Sid = "AllowUsersToListUsersInConsole"
@@ -209,7 +205,7 @@ module "iam-policy-selfservice-NoMFA" {
         Action = [
           "iam:ListUsers"
         ]
-        Resource = "arn:aws:iam::477275408388:user/*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Resource = "arn:aws:iam::477275408388:user/*"
       },
       {
         Sid = "AllowUsersAllActionsForCredentials"
@@ -219,21 +215,21 @@ module "iam-policy-selfservice-NoMFA" {
           "iam:*AccessKey*",
           "iam:*SigningCertificate*"
         ]
-        Resource = "arn:aws:iam::477275408388:user/*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Resource = "arn:aws:iam::477275408388:user/*"
       },
       {
         Action = [
           "iam:ChangePassword"
         ]
         Effect = "Allow"
-        Resource = "arn:aws:iam::477275408388:user/*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Resource = "arn:aws:iam::477275408388:user/*"
       },
       {
         Action = [
           "iam:GetAccountPasswordPolicy"
         ]
         Effect = "Allow"
-        Resource = "arn:aws:iam::477275408388:*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Resource = "arn:aws:iam::477275408388:*"
       },
       {
         sid = "AllowUsersToSeeStatsOnIAMConsoleDashboard"
@@ -242,7 +238,7 @@ module "iam-policy-selfservice-NoMFA" {
           "iam:ListAccount*"
         ]
         Effect = "Allow"
-        Resource = "arn:aws:iam::477275408388:*" #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Resource = "arn:aws:iam::477275408388:*"
       }
     ]
   })
@@ -253,8 +249,6 @@ module "iam-policy-access-readonly" {
   iam_policy_name        = "iam-policy-access-readonly"
   iam_policy_description = "Permissions for a user to assume the ReadOnly role, as long as they logged in with MFA."
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -264,7 +258,7 @@ module "iam-policy-access-readonly" {
           "sts:AssumeRole",
           "sts:TagSession"
         ]
-        Resource = ["arn:aws:iam::710004563535:role/ReadOnly"] #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Resource = ["arn:aws:iam::710004563535:role/ReadOnly"] 
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
@@ -280,8 +274,6 @@ module "iam-policy-access-maintainer" {
   iam_policy_name        = "iam-policy-access-maintainer"
   iam_policy_description = "Permissions for a user to assume the Maintainer role, as long as they logged in with MFA."
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -291,7 +283,7 @@ module "iam-policy-access-maintainer" {
           "sts:AssumeRole",
           "sts:TagSession"
         ]
-        Resource = ["arn:aws:iam::710004563535:role/Maintainer"] #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Resource = ["arn:aws:iam::710004563535:role/Maintainer"]
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
@@ -307,8 +299,6 @@ module "iam-policy-access-fulladmin" {
   iam_policy_name        = "iam-policy-access-fulladmin"
   iam_policy_description = "Permissions for a user to assume the Full Admin role, as long as they logged in with MFA."
 
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -318,7 +308,7 @@ module "iam-policy-access-fulladmin" {
           "sts:AssumeRole",
           "sts:TagSession"
         ]
-        Resource = ["arn:aws:iam::710004563535:role/FullAdmin"] #"arn:aws:iam::710004563535:policy/USER_${aws:username}", TBD
+        Resource = ["arn:aws:iam::710004563535:role/FullAdmin"]
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
