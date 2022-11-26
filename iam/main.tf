@@ -254,11 +254,12 @@ module "iam-policy-access-readonly" {
     Statement = [
       {
         Sid = "ReadOnly"
+        Effect = "Allow"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
         ]
-        Resource = ["arn:aws:iam::710004563535:role/ReadOnly"] 
+        Resource = "arn:aws:iam::710004563535:role/ReadOnly"
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
@@ -279,11 +280,12 @@ module "iam-policy-access-maintainer" {
     Statement = [
       {
         Sid = "ReadOnly"
+        Effect = " Allow"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
         ]
-        Resource = ["arn:aws:iam::710004563535:role/Maintainer"]
+        Resource = "arn:aws:iam::710004563535:role/Maintainer"
         Condition = {
             Bool = {
                 "aws:MultiFactorAuthPresent": "true"
@@ -299,35 +301,23 @@ module "iam-policy-access-fulladmin" {
   iam_policy_name        = "iam-policy-access-fulladmin"
   iam_policy_description = "Permissions for a user to assume the Full Admin role, as long as they logged in with MFA."
 
-  # policy = jsonencode({
-  #   Version = "2012-10-17"
-  #   Statement = [
-  #     {
-  #       Sid = "FullAdmin"
-  #       Action = [
-  #         "sts:AssumeRole",
-  #         "sts:TagSession"
-  #       ]
-  #       Resource = ["arn:aws:iam::710004563535:role/FullAdmin"]
-  #       Condition = {
-  #           Bool = {
-  #               "aws:MultiFactorAuthPresent": "true"
-  #           }
-  #       }
-  #     }
-  #   ]
-  # })
-
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
+        Sid = "FullAdmin"
+        Effect = "Allow"
         Action = [
-          "ec2:Describe*",
+          "sts:AssumeRole",
+          "sts:TagSession"
         ]
-        Effect   = "Allow"
-        Resource = "*"
-      },
+        Resource = "arn:aws:iam::710004563535:role/FullAdmin"
+        Condition = {
+            Bool = {
+                "aws:MultiFactorAuthPresent": "true"
+            }
+        }
+      }
     ]
   })
 }
