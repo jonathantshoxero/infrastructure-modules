@@ -232,7 +232,7 @@ module "iam-policy-selfservice-NoMFA" {
         Resource = "arn:aws:iam::477275408388:*"
       },
       {
-        sid = "AllowUsersToSeeStatsOnIAMConsoleDashboard"
+        Sid = "AllowUsersToSeeStatsOnIAMConsoleDashboard"
         Action = [
           "iam:GetAccount*",
           "iam:ListAccount*"
@@ -280,7 +280,7 @@ module "iam-policy-access-maintainer" {
     Statement = [
       {
         Sid = "ReadOnly"
-        Effect = " Allow"
+        Effect = "Allow"
         Action = [
           "sts:AssumeRole",
           "sts:TagSession"
