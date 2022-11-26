@@ -9,6 +9,7 @@ module "iam-policy-view-own-access" {
     Statement = [
       {
         Sid = "AllowUserAccessToPolicy"
+        Effect = "Allow",
         Action = [
           "iam:GetPolicy",
           "iam:GetPolicyVersion"
@@ -22,7 +23,7 @@ module "iam-policy-view-own-access" {
       },
       {
         Sid = "AllowUserListOwnAccess"
-        Effect = "",
+        Effect = "Allow",
         Action = [
           "iam:ListAttachedUserPolicies",
           "iam:ListUserPolicies",
