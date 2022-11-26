@@ -299,22 +299,35 @@ module "iam-policy-access-fulladmin" {
   iam_policy_name        = "iam-policy-access-fulladmin"
   iam_policy_description = "Permissions for a user to assume the Full Admin role, as long as they logged in with MFA."
 
-  policy = jsonencode({
+  # policy = jsonencode({
+  #   Version = "2012-10-17"
+  #   Statement = [
+  #     {
+  #       Sid = "FullAdmin"
+  #       Action = [
+  #         "sts:AssumeRole",
+  #         "sts:TagSession"
+  #       ]
+  #       Resource = ["arn:aws:iam::710004563535:role/FullAdmin"]
+  #       Condition = {
+  #           Bool = {
+  #               "aws:MultiFactorAuthPresent": "true"
+  #           }
+  #       }
+  #     }
+  #   ]
+  # })
+
+  policy = policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "FullAdmin"
         Action = [
-          "sts:AssumeRole",
-          "sts:TagSession"
+          "ec2:Describe*",
         ]
-        Resource = ["arn:aws:iam::710004563535:role/FullAdmin"]
-        Condition = {
-            Bool = {
-                "aws:MultiFactorAuthPresent": "true"
-            }
-        }
-      }
+        Effect   = "Allow"
+        Resource = "*"
+      },
     ]
   })
 }
