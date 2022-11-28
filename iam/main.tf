@@ -402,6 +402,25 @@ module "iam-role-fulladmin" {
   })
 }
 
+module "iam-role-eksclusterrole" {
+  source = "./iam-roles"
+  iam_role_name = "iam-role-dev-eksclusterrole"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "sts:AssumeRole"
+        ]
+        Principal = {
+				  Service = "eks.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
 ################## IAM Roles to Policies attachment
 module "iam-policies-roles-readonly" {
   source = "./iam-policies-roles-attachment"
