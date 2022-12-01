@@ -323,6 +323,31 @@ module "iam-policy-access-fulladmin" {
   })
 }
 
+module "iam-policy-billing-console" {
+  source = "./iam-policies"
+  iam_policy_name        = "iam-policy-billing-console"
+  iam_policy_description = "Permissions for a user to CRUD billing console"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "aws-portal:*",
+          "sts:AssumeRole"
+        ]
+        Resource = "arn:aws:iam::710004563535:role/FullAdmin"
+        Condition = {
+            Bool = {
+                "aws:MultiFactorAuthPresent": "true"
+            }
+        }
+      }
+    ]
+  })
+}
+
 ############## IAM Roles
 module "iam-role-readonly" {
   source = "./iam-roles"
