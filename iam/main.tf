@@ -1,8 +1,8 @@
 
 module "iam-policy-view-own-access" {
   source = "./iam-policies"
-  iam_policy_name        = "view-own-access-dev"
-  iam_policy_description = "My test policy"
+  iam_policy_name        = "view-own-access-${var.env}"
+  iam_policy_description = "Policy that allows users to read only if MFA is enabled."
 
   policy = jsonencode({
     Version = "2012-10-17"
@@ -168,7 +168,7 @@ module "iam-policy-selfservice-MFA" {
 
 module "iam-policy-selfservice-NoMFA" {
   source = "./iam-policies"
-  iam_policy_name        = "iam-policy-access-selfservice-NoMFA"
+  iam_policy_name        = "iam-policy-access-selfservice-NoMFA-${var.env}"
   iam_policy_description = "Permissions for a user to assume the ReadOnly role, as long as they logged in with MFA."
 
   policy = jsonencode({
@@ -247,7 +247,7 @@ module "iam-policy-selfservice-NoMFA" {
 
 module "iam-policy-access-readonly" {
   source = "./iam-policies"
-  iam_policy_name        = "iam-policy-access-readonly"
+  iam_policy_name        = "iam-policy-access-readonly-${var.env}"
   iam_policy_description = "Permissions for a user to assume the ReadOnly role, as long as they logged in with MFA."
 
   policy = jsonencode({
@@ -273,7 +273,7 @@ module "iam-policy-access-readonly" {
 
 module "iam-policy-access-maintainer" {
   source = "./iam-policies"
-  iam_policy_name        = "iam-policy-access-maintainer"
+  iam_policy_name        = "iam-policy-access-maintainer-${var.env}"
   iam_policy_description = "Permissions for a user to assume the Maintainer role, as long as they logged in with MFA."
 
   policy = jsonencode({
@@ -299,7 +299,7 @@ module "iam-policy-access-maintainer" {
 
 module "iam-policy-access-fulladmin" {
   source = "./iam-policies"
-  iam_policy_name        = "iam-policy-access-fulladmin"
+  iam_policy_name        = "iam-policy-access-fulladmin-${var.env}"
   iam_policy_description = "Permissions for a user to assume the Full Admin role, as long as they logged in with MFA."
 
   policy = jsonencode({
@@ -325,7 +325,7 @@ module "iam-policy-access-fulladmin" {
 
 module "iam-policy-billing-console" {
   source = "./iam-policies"
-  iam_policy_name        = "iam-policy-billing-console"
+  iam_policy_name        = "iam-policy-billing-console-${var.env}"
   iam_policy_description = "Permissions for a user to CRUD billing console"
 
   policy = jsonencode({
@@ -351,7 +351,7 @@ module "iam-policy-billing-console" {
 ############## IAM Roles
 module "iam-role-readonly" {
   source = "./iam-roles"
-  iam_role_name = "iam-role-read-only"
+  iam_role_name = "iam-role-read-only-${var.env}"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -363,7 +363,7 @@ module "iam-role-readonly" {
           "sts:TagSession"
         ]
         Principal = {
-				  AWS = "arn:aws:iam::710004563535:user/jonathan.ho@xero.com"
+				  AWS = var.admin_group
         }
         Condition = {
             Bool = {
@@ -377,7 +377,7 @@ module "iam-role-readonly" {
 
 module "iam-role-maintainer" {
   source = "./iam-roles"
-  iam_role_name = "iam-role-maintainer"
+  iam_role_name = "iam-role-maintainer-${var.env}"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -389,7 +389,7 @@ module "iam-role-maintainer" {
           "sts:TagSession"
         ]
         Principal = {
-				  AWS = "arn:aws:iam::710004563535:user/jonathan.ho@xero.com"
+				  AWS = var.admin_group
         }
         Condition = {
             Bool = {
@@ -403,7 +403,7 @@ module "iam-role-maintainer" {
 
 module "iam-role-fulladmin" {
   source = "./iam-roles"
-  iam_role_name = "iam-role-fulladmin"
+  iam_role_name = "iam-role-fulladmin-${var.env}"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -415,7 +415,7 @@ module "iam-role-fulladmin" {
           "sts:TagSession"
         ]
         Principal = {
-				  AWS = "arn:aws:iam::710004563535:user/jonathan.ho@xero.com"
+				  AWS = var.admin_group
         }
         Condition = {
             Bool = {
@@ -429,7 +429,7 @@ module "iam-role-fulladmin" {
 
 module "iam-role-eksclusterrole" {
   source = "./iam-roles"
-  iam_role_name = "iam-role-dev-eksclusterrole"
+  iam_role_name = "iam-role-dev-eksclusterrole-${var.env}"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
